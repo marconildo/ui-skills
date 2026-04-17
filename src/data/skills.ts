@@ -10,6 +10,9 @@ type SkillFrontmatter = {
 
 export type Skill = {
   slug: string;
+  pathSlug: string;
+  sourceKey?: string;
+  sourceLabel?: string;
   name: string;
   label: string;
   description?: string;
@@ -40,6 +43,9 @@ const localSkills: Skill[] = Object.entries(skillModules).map(
 
     return {
       slug,
+      pathSlug: slug,
+      sourceKey: "local",
+      sourceLabel: "Local",
       name,
       label: module.frontmatter.label ?? titleize(name),
       description: module.frontmatter.description,
@@ -48,9 +54,12 @@ const localSkills: Skill[] = Object.entries(skillModules).map(
 );
 
 const registrySkills: Skill[] = registry
-  .filter((s) => !localSkills.some((ls) => ls.slug === s.slug))
+  .filter((s) => !localSkills.some((ls) => ls.pathSlug === s.pathSlug))
   .map((s) => ({
     slug: s.slug,
+    pathSlug: s.pathSlug,
+    sourceKey: s.sourceKey,
+    sourceLabel: s.sourceLabel,
     name: s.name ?? s.slug,
     label: titleize(s.name ?? s.slug),
     description: s.description,
@@ -65,6 +74,6 @@ export const skills: Skill[] = [...localSkills, ...registrySkills].sort(
     if (!a.isRegistry && b.isRegistry) return -1;
     if (a.isRegistry && !b.isRegistry) return 1;
 
-    return a.slug.localeCompare(b.slug);
+    return a.pathSlug.localeCompare(b.pathSlug);
   },
 );

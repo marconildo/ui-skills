@@ -2,8 +2,8 @@ import type { APIRoute } from "astro";
 import installScript from "../../install.sh?raw";
 import { skills } from "../data/skills";
 
-export const GET: APIRoute = ({ request }) => {
-  const allSkills = skills.map((s) => s.slug).join(" ");
+export const GET: APIRoute = () => {
+  const allSkills = skills.map((s) => s.pathSlug).join(" ");
   const body =
     installScript
       .replace(/ALL_SKILLS=".*"/, `ALL_SKILLS="${allSkills}"`)
