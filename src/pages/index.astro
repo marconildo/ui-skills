@@ -1,6 +1,7 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import { skills } from "../data/skills";
+import Button from "../ui/button.astro";
 
 const repoSkillSlugs = [
   "ibelick/baseline-ui",
@@ -103,12 +104,9 @@ const curatedSkills = skills.filter((skill) =>
             }
           </div>
           <div class="mt-4 flex justify-center px-4 sm:px-0">
-            <a
-              href="/skills"
-              class="hover:border-parchment-300 hover:bg-parchment-100 text-parchment-900 inline-flex items-center justify-center rounded-[6px] border border-neutral-200 bg-transparent px-3 py-1.5 text-[14px] font-[450] tracking-tight transition-colors"
-            >
+            <Button href="/skills">
               See all skills
-            </a>
+            </Button>
           </div>
         </div>
       </div>
