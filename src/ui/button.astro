@@ -25,11 +25,19 @@ const variantClass =
 
 {
   href ? (
-    <a href={href} class={`${baseClass} ${variantClass} ${className}`} {...rest}>
+    <a
+      href={href}
+      class={`${baseClass} ${variantClass} ${className}`}
+      {...rest}
+    >
       <slot />
     </a>
   ) : (
-    <button type={type} class={`${baseClass} ${variantClass} ${className}`} {...rest}>
+    <button
+      type={type}
+      class={`${baseClass} ${variantClass} ${className}`}
+      {...rest}
+    >
       <slot />
     </button>
   )

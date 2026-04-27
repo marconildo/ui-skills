@@ -4,7 +4,7 @@ import { skills } from "../data/skills";
 import Button from "../ui/button.astro";
 import SkillCard from "../ui/skill-card.astro";
 
-const MAX_SKILLS = 12;
+const MAX_SKILLS = 18;
 
 const displayedSkills = [...skills]
   .sort((a, b) => {
@@ -37,7 +37,7 @@ const displayedSkills = [...skills]
       <div class="mx-auto flex w-full flex-col gap-14">
         <div class="px-4 sm:px-0">
           <h1 class="sr-only">UI Skills</h1>
-          <div class="relative">
+          <div class="relative inline-block overflow-hidden">
             <pre
               aria-hidden="true"
               class="text-parchment-500 font-['Fira_Mono'] text-[12px] leading-[110%] tracking-[-1.5px] whitespace-pre select-none lg:text-[12px]"
@@ -51,7 +51,7 @@ const displayedSkills = [...skills]
               `}</pre>
             <pre
               aria-hidden="true"
-              class="text-parchment-900 absolute top-0 left-0 font-['Fira_Mono'] text-[12px] leading-[110%] tracking-[-1.5px] whitespace-pre select-none lg:text-[12px]"
+              class="text-parchment-500/60 absolute top-0 left-0 font-['Fira_Mono'] text-[12px] leading-[110%] tracking-[-1.5px] whitespace-pre select-none lg:text-[12px]"
               style="font-weight: 300">{`
 ██    ██ ██     ███████ ██   ██ ██ ██      ██      ███████ 
 ██    ██ ██     ██      ██  ██  ██ ██      ██      ██      
@@ -60,9 +60,7 @@ const displayedSkills = [...skills]
  ██████  ██     ███████ ██   ██ ██ ███████ ███████ ███████ 
 `}</pre>
           </div>
-          <p class="text-parchment-600 mt-3 text-lg">
-            Skills for Design Engineers
-          </p>
+          <p class="text-parchment-600 text-lg">Skills for Design Engineers</p>
         </div>
 
         <div>
