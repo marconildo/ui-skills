@@ -130,6 +130,62 @@ const relatedSkills = skill
       .slice(0, 10)
   : [];
 
+const siteOrigin = Astro.site ?? new URL("https://ui-skills.com");
+const pageUrl = new URL(`/skills/${pathSlug}`, siteOrigin).toString();
+const structuredData = skill
+  ? {
+      "@context": "https://schema.org",
+      "@type": "TechArticle",
+      headline: skill.label,
+      description: skill.description ?? "Install this skill with a single command.",
+      url: pageUrl,
+      mainEntityOfPage: pageUrl,
+      author: {
+        "@type": "Person",
+        name: skill.sourceLabel ?? (skill.sourceKey ?? "Ibelick"),
+        url: skill.sourceKey
+          ? `https://github.com/${skill.sourceKey}`
+          : "https://github.com/ibelick",
+      },
+      publisher: {
+        "@type": "Organization",
+        name: "UI Skills",
+        url: new URL("/", siteOrigin).toString(),
+      },
+      about: ["Design Engineering", "Developer Tools", "AI Skills"],
+      keywords: [skill.slug, skill.pathSlug, "design engineering skills"],
+    }
+  : isGroupPage
+    ? {
+        "@context": "https://schema.org",
+        "@type": "CollectionPage",
+        name: `${groupTitle} Skills`,
+        description: `Browse skills from ${groupTitle}.`,
+        url: pageUrl,
+        hasPart: {
+          "@type": "ItemList",
+          itemListElement: children.map((entry: Skill, index: number) => ({
+            "@type": "ListItem",
+            position: index + 1,
+            url: new URL(`/skills/${entry.pathSlug}`, siteOrigin).toString(),
+            name: entry.label,
+          })),
+        },
+      }
+    : undefined;
+
+const pageTitle = skill
+  ? `${skill.label} - UI Skills`
+  : isGroupPage
+    ? `${groupTitle} Skills - UI Skills`
+    : "Skills - UI Skills";
+
+const pageDescription = skill
+  ? (skill.description ?? `Install ${skill.label} for your design engineering workflow.`)
+  : isGroupPage
+    ? `Browse skills from ${groupTitle}.`
+    : "Browse UI Skills.";
+
 let skillRaw = "";
 let displayContent = "";
 let SkillContent: any = null;
@@ -196,7 +252,12 @@ const commandSegments = [
 ];
 ---
 
-<Layout llmsPath={skill ? `/skills/${pathSlug}/llms.txt` : undefined}>
+<Layout
+  llmsPath={skill ? `/skills/${pathSlug}/llms.txt` : undefined}
+  structuredData={structuredData}
+  title={pageTitle}
+  description={pageDescription}
+>
   <div class="relative flex min-h-dvh flex-col items-center justify-start px-0 sm:px-4">
     <div class="relative mt-20 w-full max-w-3xl sm:px-0">
       <div class="mx-auto flex w-full flex-col gap-10">

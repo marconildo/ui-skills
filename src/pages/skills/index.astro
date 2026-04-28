@@ -17,9 +17,32 @@ const mixedSkills = [...skills]
       avatarUrl: `https://github.com/${owner}.png?size=40`,
     };
   });
+
+const siteOrigin = Astro.site ?? new URL("https://ui-skills.com");
+const skillsIndexUrl = new URL("/skills", siteOrigin).toString();
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  name: "UI Skills Library",
+  description: "Browse every skill available in this collection.",
+  url: skillsIndexUrl,
+  hasPart: {
+    "@type": "ItemList",
+    itemListElement: mixedSkills.map((skill, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      url: new URL(`/skills/${skill.pathSlug}`, siteOrigin).toString(),
+      name: skill.label,
+    })),
+  },
+};
 ---
 
-<Layout>
+<Layout
+  structuredData={structuredData}
+  title="All Skills - UI Skills"
+  description="Browse every UI Skill available in the collection, including local and registry skills for design engineering workflows."
+>
   <div
     class="relative flex min-h-dvh flex-col items-center justify-start px-0 sm:px-4"
   >

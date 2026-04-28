@@ -40,6 +40,7 @@ export const GET: APIRoute = async ({ params }) => {
     return new Response(localSkill.raw, {
       headers: {
         "Content-Type": "text/plain; charset=utf-8",
+        "X-Robots-Tag": "noindex, nofollow",
       },
     });
   }
@@ -60,6 +61,7 @@ export const GET: APIRoute = async ({ params }) => {
     return new Response(content, {
       headers: {
         "Content-Type": "text/plain; charset=utf-8",
+        "X-Robots-Tag": "noindex, nofollow",
       },
     });
   } catch {

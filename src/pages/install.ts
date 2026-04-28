@@ -12,6 +12,7 @@ export const GET: APIRoute = () => {
   return new Response(body, {
     headers: {
       "Content-Type": "text/x-shellscript; charset=utf-8",
+      "X-Robots-Tag": "noindex, nofollow",
     },
   });
 };

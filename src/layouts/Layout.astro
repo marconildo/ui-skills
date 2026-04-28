@@ -7,14 +7,22 @@ import { CommandDialog } from "../ui/command-dialog";
 
 type Props = {
   llmsPath?: string;
+  structuredData?: Record<string, unknown> | Array<Record<string, unknown>>;
+  title?: string;
+  description?: string;
+  robots?: string;
 };
 
-const { llmsPath } = Astro.props as Props;
+const { llmsPath, structuredData, title, description, robots } = Astro.props as Props;
 const currentYear = new Date().getFullYear();
 const canonicalUrl = new URL(
   Astro.url.pathname,
   Astro.site ?? "https://ui-skills.com",
 );
+const pageTitle = title ?? "UI Skills - Skills for Design Engineers";
+const pageDescription = description ?? "Skills for Design Engineers.";
+const robotsContent =
+  robots ?? "index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1";
 const githubStars = await getGithubStars("ibelick/ui-skills", "7,000+");
 const skillRawModules = import.meta.glob<string>("/skills/*/SKILL.md", {
   eager: true,
@@ -47,15 +55,26 @@ const commandItems = skills.map((skill) => ({
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
     <link rel="canonical" href={canonicalUrl.href} />
-    <title>UI Skills - Skills for Design Engineers</title>
-    <meta name="description" content="Skills for Design Engineers." />
-    <meta property="og:title" content="UI Skills" />
-    <meta property="og:description" content="Skills for Design Engineers." />
+    <title>{pageTitle}</title>
+    <meta name="description" content={pageDescription} />
+    <meta name="robots" content={robotsContent} />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={pageDescription} />
+    <meta property="og:url" content={canonicalUrl.href} />
     <meta property="og:image" content="/UI-OG.webp" />
+    <meta property="og:type" content="website" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="UI Skills" />
-    <meta name="twitter:description" content="Skills for Design Engineers." />
+    <meta name="twitter:title" content={pageTitle} />
+    <meta name="twitter:description" content={pageDescription} />
     <meta name="twitter:image" content="/UI-OG-X.webp" />
+    {
+      structuredData ? (
+        <script
+          type="application/ld+json"
+          set:html={JSON.stringify(structuredData)}
+        />
+      ) : null
+    }
     <script defer src="https://assets.onedollarstats.com/stonks.js"></script>
   </head>
   <body>
