@@ -48,6 +48,71 @@ type RegistrySourceSkill = Omit<
 
 const registrySource: RegistrySourceSkill[] = [
   {
+    slug: "ui-skills-root",
+    user: "ibelick",
+    repo: "ui-skills",
+    rawUrl:
+      "https://raw.githubusercontent.com/ibelick/ui-skills/main/skills/ui-skills-root/SKILL.md",
+    githubUrl:
+      "https://github.com/ibelick/ui-skills/blob/main/skills/ui-skills-root/SKILL.md",
+    name: "ui-skills-root",
+    topics: ["systems", "tooling", "architecture"],
+    description:
+      "Use when the user needs UI help and you must route by topic, stack, and intent to the smallest useful set of UI skills.",
+  },
+  {
+    slug: "baseline-ui",
+    user: "ibelick",
+    repo: "ui-skills",
+    rawUrl:
+      "https://raw.githubusercontent.com/ibelick/ui-skills/main/skills/baseline-ui/SKILL.md",
+    githubUrl:
+      "https://github.com/ibelick/ui-skills/blob/main/skills/baseline-ui/SKILL.md",
+    name: "baseline-ui",
+    topics: ["systems", "visual", "craft"],
+    description:
+      "Quickly deslop UI code by fixing spacing, hierarchy, typography, and small layout issues. Use when the interface needs a fast cleanup or polish pass.",
+  },
+  {
+    slug: "fixing-accessibility",
+    user: "ibelick",
+    repo: "ui-skills",
+    rawUrl:
+      "https://raw.githubusercontent.com/ibelick/ui-skills/main/skills/fixing-accessibility/SKILL.md",
+    githubUrl:
+      "https://github.com/ibelick/ui-skills/blob/main/skills/fixing-accessibility/SKILL.md",
+    name: "fixing-accessibility",
+    topics: ["accessibility", "testing", "frontend"],
+    description:
+      "Audit and fix HTML accessibility issues including ARIA labels, keyboard navigation, focus management, color contrast, and form errors. Use when adding interactive controls, forms, dialogs, or reviewing WCAG compliance.",
+  },
+  {
+    slug: "fixing-metadata",
+    user: "ibelick",
+    repo: "ui-skills",
+    rawUrl:
+      "https://raw.githubusercontent.com/ibelick/ui-skills/main/skills/fixing-metadata/SKILL.md",
+    githubUrl:
+      "https://github.com/ibelick/ui-skills/blob/main/skills/fixing-metadata/SKILL.md",
+    name: "fixing-metadata",
+    topics: ["architecture", "frontend", "tooling"],
+    description:
+      "Audit and fix page metadata including titles, meta descriptions, Open Graph, Twitter cards, canonical URLs, and JSON-LD structured data. Use when shipping new pages or fixing SEO and social preview issues.",
+  },
+  {
+    slug: "fixing-motion-performance",
+    user: "ibelick",
+    repo: "ui-skills",
+    rawUrl:
+      "https://raw.githubusercontent.com/ibelick/ui-skills/main/skills/fixing-motion-performance/SKILL.md",
+    githubUrl:
+      "https://github.com/ibelick/ui-skills/blob/main/skills/fixing-motion-performance/SKILL.md",
+    name: "fixing-motion-performance",
+    topics: ["motion", "performance", "frontend"],
+    description:
+      "Audit and fix animation performance issues including layout thrashing, compositor properties, scroll-linked motion, and blur effects. Use when animations stutter, transitions jank, or reviewing CSS/JS animation performance.",
+  },
+  {
     slug: "frontend-design",
     user: "anthropics",
     repo: "skills",

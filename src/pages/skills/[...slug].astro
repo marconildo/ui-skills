@@ -1,7 +1,6 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import CodeBlock from "../../ui/code-block.astro";
-import type { MarkdownInstance } from "astro";
 import { skills, type Skill } from "../../data/skills";
 import { topicBySlug, relatedTopicSlugs } from "../../data/topics";
 import type { TopicSlug } from "../../data/registry";
@@ -12,12 +11,6 @@ import SkillCard from "../../ui/skill-card.astro";
 import SkillNav from "../../ui/skill-nav.astro";
 import TopicTag from "../../ui/topic-tag.astro";
 import { marked } from "marked";
-
-type SkillFrontmatter = {
-  name?: string;
-  description?: string;
-  label?: string;
-};
 
 const titleize = (value: string) =>
   value
@@ -44,25 +37,6 @@ const rewriteRelativeLinksToRepo = (html: string, baseUrl: string) =>
     }
   });
 
-const skillModules = import.meta.glob<MarkdownInstance<SkillFrontmatter>>(
-  "/skills/*/SKILL.md",
-  { eager: true },
-);
-const skillRawModules = import.meta.glob<string>("/skills/*/SKILL.md", {
-  eager: true,
-  query: "?raw",
-  import: "default",
-});
-const skillEntries = Object.entries(skillModules).map(([path, module]) => {
-  const entrySlug = path.split("/").at(-2) ?? "";
-
-  return { slug: entrySlug, module };
-});
-const skillRawEntries = Object.entries(skillRawModules).map(([path, raw]) => {
-  const entrySlug = path.split("/").at(-2) ?? "";
-
-  return { slug: entrySlug, raw };
-});
 
 export function getStaticPaths() {
   const topicGroupPaths = Array.from(
@@ -389,13 +363,13 @@ const pageDescription = skill
 
 let skillRaw = "";
 let displayContent = "";
-let SkillContent: any = null;
 let githubUrl = "";
 
-if (skill?.isRegistry) {
+if (skill) {
   const registryEntry = registry.find(
     (entry: RegistrySkill) => entry.pathSlug === skill.pathSlug,
   );
+
   if (registryEntry) {
     try {
       const response = await fetch(registryEntry.rawUrl);
@@ -422,52 +396,26 @@ if (skill?.isRegistry) {
       displayContent = `<p>Error: ${e instanceof Error ? e.message : String(e)}</p>`;
     }
   }
-} else if (skill) {
-  const localSlug = skill.slug;
-  const skillModule = skillEntries.find(
-    (entry) => entry.slug === localSlug,
-  )?.module;
-  skillRaw =
-    skillRawEntries.find((entry) => entry.slug === localSlug)?.raw ?? "";
-  SkillContent = skillModule?.Content;
 }
 
-const commandSegments = [
-  ...(skill?.isRegistry
-    ? (() => {
-        const registryEntry = registry.find(
-          (entry: RegistrySkill) => entry.pathSlug === skill.pathSlug,
-        );
-        const repoUrl = registryEntry
-          ? `https://github.com/${registryEntry.user}/${registryEntry.repo}`
-          : "https://github.com/ibelick/ui-skills";
-        const skillName =
-          registryEntry?.name ?? skill?.slug ?? canonicalSkillPath;
+const commandSegments = (() => {
+  const registryEntry = skill
+    ? registry.find((entry: RegistrySkill) => entry.pathSlug === skill.pathSlug)
+    : undefined;
+  const repoUrl = registryEntry
+    ? `https://github.com/${registryEntry.user}/${registryEntry.repo}`
+    : "https://github.com/ibelick/ui-skills";
+  const skillName = registryEntry?.name ?? skill?.slug ?? canonicalSkillPath;
 
-        return [
-          { text: "npx", className: "text-[#953800]" },
-          { text: " skills", className: "text-[#0a3069]" },
-          { text: " add", className: "text-[#0550ae]" },
-          { text: ` ${repoUrl}`, className: "text-parchment-400" },
-          { text: " --skill", className: "text-[#0550ae]" },
-          { text: ` ${skillName}`, className: "text-parchment-400" },
-        ];
-      })()
-    : [
-        { text: "npx", className: "text-[#953800]" },
-        { text: " skills", className: "text-[#0a3069]" },
-        { text: " add", className: "text-[#0550ae]" },
-        {
-          text: " https://github.com/ibelick/ui-skills",
-          className: "text-parchment-400",
-        },
-        { text: " --skill", className: "text-[#0550ae]" },
-        {
-          text: ` ${skill?.slug ?? canonicalSkillPath}`,
-          className: "text-parchment-400",
-        },
-      ]),
-];
+  return [
+    { text: "npx", className: "text-[#953800]" },
+    { text: " skills", className: "text-[#0a3069]" },
+    { text: " add", className: "text-[#0550ae]" },
+    { text: ` ${repoUrl}`, className: "text-parchment-400" },
+    { text: " --skill", className: "text-[#0550ae]" },
+    { text: ` ${skillName}`, className: "text-parchment-400" },
+  ];
+})();
 ---
 
 <Layout
@@ -633,11 +581,7 @@ const commandSegments = [
                 description={skill.description}
                 dataEvent="install"
               >
-                {SkillContent ? (
-                  <SkillContent />
-                ) : (
-                  <div set:html={displayContent} />
-                )}
+                <div set:html={displayContent} />
               </SkillContentCard>
 
               {relatedSkills.length > 0 ? (

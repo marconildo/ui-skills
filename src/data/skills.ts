@@ -1,12 +1,4 @@
-import type { MarkdownInstance } from "astro";
-
 import { registry, type TopicSlug } from "./registry";
-
-type SkillFrontmatter = {
-  name?: string;
-  description?: string;
-  label?: string;
-};
 
 export type Skill = {
   slug: string;
@@ -16,22 +8,8 @@ export type Skill = {
   name: string;
   label: string;
   description?: string;
-  isRegistry?: boolean;
   topics?: TopicSlug[];
 };
-
-const localSkillTopics: Record<string, TopicSlug[]> = {
-  "ibelick/ui-skills-root": ["systems", "tooling", "architecture"],
-  "ibelick/baseline-ui": ["systems", "visual", "craft"],
-  "ibelick/fixing-accessibility": ["accessibility", "testing", "frontend"],
-  "ibelick/fixing-metadata": ["architecture", "frontend", "tooling"],
-  "ibelick/fixing-motion-performance": ["motion", "performance", "frontend"],
-};
-
-const skillModules = import.meta.glob<MarkdownInstance<SkillFrontmatter>>(
-  "/skills/*/SKILL.md",
-  { eager: true },
-);
 
 const titleize = (value: string) =>
   value
@@ -45,48 +23,22 @@ const titleize = (value: string) =>
     })
     .join(" ");
 
-const localSkills: Skill[] = Object.entries(skillModules).map(
-  ([path, module]) => {
-    const slug = path.split("/").at(-2) ?? "";
-    const name = module.frontmatter.name ?? slug;
-
-    return {
-      slug,
-      pathSlug: `ibelick/${slug}`,
-      sourceKey: "ibelick",
-      sourceLabel: "Ibelick",
-      name,
-      label: module.frontmatter.label ?? titleize(name),
-      description: module.frontmatter.description,
-      topics: localSkillTopics[`ibelick/${slug}`] ?? [],
-    };
-  },
-);
-
-const registrySkills: Skill[] = registry
-  .filter((s) => !localSkills.some((ls) => ls.pathSlug === s.pathSlug))
-  .map((s) => ({
-    slug: s.slug,
-    pathSlug: s.pathSlug,
-    sourceKey: s.sourceKey,
-    sourceLabel: s.sourceLabel,
-    name: s.name ?? s.slug,
-    label: titleize(s.name ?? s.slug),
-    description: s.description,
-    topics: s.topics ?? [],
-    isRegistry: true,
-  }));
-
-export const skills: Skill[] = [...localSkills, ...registrySkills].sort(
+export const skills: Skill[] = registry.map((skill) => ({
+  slug: skill.slug,
+  pathSlug: skill.pathSlug,
+  sourceKey: skill.sourceKey,
+  sourceLabel: skill.sourceLabel,
+  name: skill.name ?? skill.slug,
+  label: titleize(skill.name ?? skill.slug),
+  description: skill.description,
+  topics: skill.topics ?? [],
+})).sort(
   (a, b) => {
     if (a.slug === "ui-skills-root") return -1;
     if (b.slug === "ui-skills-root") return 1;
 
     if (a.slug === "baseline-ui") return -1;
     if (b.slug === "baseline-ui") return 1;
-
-    if (!a.isRegistry && b.isRegistry) return -1;
-    if (a.isRegistry && !b.isRegistry) return 1;
 
     return a.pathSlug.localeCompare(b.pathSlug);
   },
