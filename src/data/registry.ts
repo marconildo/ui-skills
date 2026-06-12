@@ -1406,6 +1406,19 @@ const registrySource: RegistrySourceSkill[] = [
     description:
       "Production-ready CSS transition patterns for web apps, with drop-in snippets for cards, modals, dropdowns, panels, and page transitions.",
   },
+  {
+    slug: "daisyui",
+    user: "saadeghi",
+    repo: "daisyui",
+    rawUrl:
+      "https://raw.githubusercontent.com/saadeghi/daisyui/master/skills/daisyui/SKILL.md",
+    githubUrl:
+      "https://github.com/saadeghi/daisyui/blob/master/skills/daisyui/SKILL.md",
+    name: "daisyui",
+    topics: ["visual", "tooling", "frontend"],
+    description:
+      "Official daisyUI component library skill, providing docs, class names, examples and code examples to generate better daisyUI code.",
+  },
 ];
 
 const buildInitialPathSlug = (entry: RegistrySourceSkill) => {
