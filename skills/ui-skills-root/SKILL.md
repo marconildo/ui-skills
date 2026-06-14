@@ -1,62 +1,53 @@
 ---
 name: ui-skills-root
-description: Use when the user needs UI help and you must route by topic, stack, and intent to the smallest useful set of UI skills.
+description: Use before UI-related work to select the smallest useful UI Skills context through the ui-skills CLI.
+license: MIT
+metadata:
+  author: ibelick
+  version: "1.0.0"
 ---
 
 # UI Skills Root
 
-You are the router for UI Skills.
+You are the routing layer for UI Skills.
 
-Do not solve the request directly unless no skill fits.
-The registry contains both local `ibelick` skills and hosted skills from `ui-skills.com`; treat them as one routing pool.
+Before editing UI, use `ui-skills start`, then route by category with the CLI. Select first. Implement after.
 
-## Rules
+## Protocol
 
-- Route by topic first, then repo stack, then specificity.
-- Prefer the smallest useful set of skills.
-- Default to 1 skill.
-- Never return more than 3 skills.
-- Prefer task-specific skills over broad polish skills.
-- Prefer framework-specific skills when the stack is obvious.
-- Return `no skill needed` if the request is not UI-related.
-- If confidence is low, ask one short clarifying question.
+1. decide if the task is UI-related
+2. if not, return `no skill needed`
+3. identify the likely category
+4. inspect that category with the CLI
+5. select the smallest useful skill set
+6. load only selected skill(s)
+7. implement using that context
 
-## Routing order
+## CLI
 
-1. Detect the user's intent.
-2. Detect the repo stack.
-3. Map the request to one or more topics.
-4. Pick the best matching skill for those topics.
-5. Load only that skill, or up to 3 if the task is broad.
+```bash
+npx ui-skills start
+npx ui-skills categories
+npx ui-skills list --category <category>
+npx ui-skills get <slug>
+```
 
-## Topic examples
+## Selection Rules
 
-- `accessibility` -> `fixing-accessibility`, `wcag-audit-patterns`, `audit-and-fix`
-- `motion` or `performance` -> `fixing-motion-performance`, `mastering-animate-presence`, `to-spring-or-not-to-spring`
-- `visual` or `craft` or quick cleanup -> `baseline-ui`, `frontend-design`, `emil-design-eng`, `make-interfaces-feel-better`
-- `baseline-ui` is the quick deslop / polish path for fast cleanup, spacing, hierarchy, and small UI fixes.
-- `systems` or `tooling` -> `shadcn`, `antfu`, `pnpm`, `vite`
-- `nextjs` -> `next-best-practices`, `next-cache-components`, `next-upgrade`
-- `vue` -> `vue-best-practices`, `vue-router-best-practices`, `vue-testing-best-practices`
-- `testing` -> `playwright-cli`, `vitest`, `react-doctor`
+Prefer 1 skill.
 
-## Examples
+Use 2 only when the task needs two clear angles.
 
-- "deslop this card layout" -> `baseline-ui`
-- "make this page feel cleaner fast" -> `baseline-ui`
-- "tighten spacing and typography" -> `baseline-ui`
-- "clean up this component quickly" -> `baseline-ui`
-- "remove sloppy spacing and fix the hierarchy" -> `baseline-ui`
-- "fix this animation jank" -> `fixing-motion-performance`
-- "stabilize this transition on mobile" -> `fixing-motion-performance`
-- "fix AnimatePresence exit behavior" -> `mastering-animate-presence`
-- "audit this form accessibility" -> `fixing-accessibility`
-- "upgrade Next.js" -> `next-upgrade`
-- "build this in Vue" -> `vue-best-practices`
+Use 3 only for broad review, redesign, or multi-surface work.
 
-## Output shape
+Never use more than 3.
 
-- Best skill first.
-- 2 alternates only when they are genuinely useful.
-- Short reason for each choice.
-- Say `no skill needed` when the task is outside UI work.
+Route by topic, then stack, then specificity.
+
+Prefer specific skills over broad skills.
+
+Prefer framework-specific skills when the stack is obvious.
+
+For quick cleanup, prefer the most specific craft, visual, or layout skill available.
+
+If unsure, inspect categories and pick the safest narrow skill.
