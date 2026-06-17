@@ -1229,9 +1229,9 @@ const registrySource: RegistrySourceSkill[] = [
     user: "pbakaus",
     repo: "impeccable",
     rawUrl:
-      "https://raw.githubusercontent.com/pbakaus/impeccable/main/source/skills/adapt/SKILL.md",
+      "https://raw.githubusercontent.com/pbakaus/impeccable/main/skill/reference/adapt.md",
     githubUrl:
-      "https://github.com/pbakaus/impeccable/blob/main/source/skills/adapt/SKILL.md",
+      "https://github.com/pbakaus/impeccable/blob/main/skill/reference/adapt.md",
     name: "adapt",
     topics: ["interaction", "systems", "frontend"],
     description:
@@ -1242,9 +1242,9 @@ const registrySource: RegistrySourceSkill[] = [
     user: "pbakaus",
     repo: "impeccable",
     rawUrl:
-      "https://raw.githubusercontent.com/pbakaus/impeccable/main/source/skills/animate/SKILL.md",
+      "https://raw.githubusercontent.com/pbakaus/impeccable/main/skill/reference/animate.md",
     githubUrl:
-      "https://github.com/pbakaus/impeccable/blob/main/source/skills/animate/SKILL.md",
+      "https://github.com/pbakaus/impeccable/blob/main/skill/reference/animate.md",
     name: "animate",
     topics: ["motion", "interaction", "frontend"],
     description:
@@ -1255,9 +1255,9 @@ const registrySource: RegistrySourceSkill[] = [
     user: "pbakaus",
     repo: "impeccable",
     rawUrl:
-      "https://raw.githubusercontent.com/pbakaus/impeccable/main/source/skills/audit/SKILL.md",
+      "https://raw.githubusercontent.com/pbakaus/impeccable/main/skill/reference/audit.md",
     githubUrl:
-      "https://github.com/pbakaus/impeccable/blob/main/source/skills/audit/SKILL.md",
+      "https://github.com/pbakaus/impeccable/blob/main/skill/reference/audit.md",
     name: "audit",
     topics: ["testing", "accessibility", "performance"],
     description:
@@ -1268,9 +1268,9 @@ const registrySource: RegistrySourceSkill[] = [
     user: "pbakaus",
     repo: "impeccable",
     rawUrl:
-      "https://raw.githubusercontent.com/pbakaus/impeccable/main/source/skills/bolder/SKILL.md",
+      "https://raw.githubusercontent.com/pbakaus/impeccable/main/skill/reference/bolder.md",
     githubUrl:
-      "https://github.com/pbakaus/impeccable/blob/main/source/skills/bolder/SKILL.md",
+      "https://github.com/pbakaus/impeccable/blob/main/skill/reference/bolder.md",
     name: "bolder",
     topics: ["visual", "interaction", "taste"],
     description:
@@ -1281,9 +1281,9 @@ const registrySource: RegistrySourceSkill[] = [
     user: "pbakaus",
     repo: "impeccable",
     rawUrl:
-      "https://raw.githubusercontent.com/pbakaus/impeccable/main/source/skills/clarify/SKILL.md",
+      "https://raw.githubusercontent.com/pbakaus/impeccable/main/skill/reference/clarify.md",
     githubUrl:
-      "https://github.com/pbakaus/impeccable/blob/main/source/skills/clarify/SKILL.md",
+      "https://github.com/pbakaus/impeccable/blob/main/skill/reference/clarify.md",
     name: "clarify",
     topics: ["interaction", "systems", "frontend"],
     description:
@@ -1294,9 +1294,9 @@ const registrySource: RegistrySourceSkill[] = [
     user: "pbakaus",
     repo: "impeccable",
     rawUrl:
-      "https://raw.githubusercontent.com/pbakaus/impeccable/main/source/skills/colorize/SKILL.md",
+      "https://raw.githubusercontent.com/pbakaus/impeccable/main/skill/reference/colorize.md",
     githubUrl:
-      "https://github.com/pbakaus/impeccable/blob/main/source/skills/colorize/SKILL.md",
+      "https://github.com/pbakaus/impeccable/blob/main/skill/reference/colorize.md",
     name: "colorize",
     topics: ["color", "visual", "systems"],
     description:
@@ -1307,9 +1307,9 @@ const registrySource: RegistrySourceSkill[] = [
     user: "pbakaus",
     repo: "impeccable",
     rawUrl:
-      "https://raw.githubusercontent.com/pbakaus/impeccable/main/source/skills/critique/SKILL.md",
+      "https://raw.githubusercontent.com/pbakaus/impeccable/main/skill/reference/critique.md",
     githubUrl:
-      "https://github.com/pbakaus/impeccable/blob/main/source/skills/critique/SKILL.md",
+      "https://github.com/pbakaus/impeccable/blob/main/skill/reference/critique.md",
     name: "critique",
     topics: ["testing", "visual", "taste"],
     description:
@@ -1320,9 +1320,9 @@ const registrySource: RegistrySourceSkill[] = [
     user: "pbakaus",
     repo: "impeccable",
     rawUrl:
-      "https://raw.githubusercontent.com/pbakaus/impeccable/main/source/skills/delight/SKILL.md",
+      "https://raw.githubusercontent.com/pbakaus/impeccable/main/skill/reference/delight.md",
     githubUrl:
-      "https://github.com/pbakaus/impeccable/blob/main/source/skills/delight/SKILL.md",
+      "https://github.com/pbakaus/impeccable/blob/main/skill/reference/delight.md",
     name: "delight",
     topics: ["interaction", "motion", "taste"],
     description:
@@ -1333,9 +1333,9 @@ const registrySource: RegistrySourceSkill[] = [
     user: "pbakaus",
     repo: "impeccable",
     rawUrl:
-      "https://raw.githubusercontent.com/pbakaus/impeccable/main/source/skills/distill/SKILL.md",
+      "https://raw.githubusercontent.com/pbakaus/impeccable/main/skill/reference/distill.md",
     githubUrl:
-      "https://github.com/pbakaus/impeccable/blob/main/source/skills/distill/SKILL.md",
+      "https://github.com/pbakaus/impeccable/blob/main/skill/reference/distill.md",
     name: "distill",
     topics: ["systems", "interaction", "craft"],
     description:
@@ -1346,9 +1346,9 @@ const registrySource: RegistrySourceSkill[] = [
     user: "pbakaus",
     repo: "impeccable",
     rawUrl:
-      "https://raw.githubusercontent.com/pbakaus/impeccable/main/source/skills/harden/SKILL.md",
+      "https://raw.githubusercontent.com/pbakaus/impeccable/main/skill/reference/harden.md",
     githubUrl:
-      "https://github.com/pbakaus/impeccable/blob/main/source/skills/harden/SKILL.md",
+      "https://github.com/pbakaus/impeccable/blob/main/skill/reference/harden.md",
     name: "harden",
     topics: ["testing", "systems", "frontend"],
     description:
@@ -1359,9 +1359,9 @@ const registrySource: RegistrySourceSkill[] = [
     user: "pbakaus",
     repo: "impeccable",
     rawUrl:
-      "https://raw.githubusercontent.com/pbakaus/impeccable/main/source/skills/impeccable/SKILL.md",
+      "https://raw.githubusercontent.com/pbakaus/impeccable/main/skill/SKILL.src.md",
     githubUrl:
-      "https://github.com/pbakaus/impeccable/blob/main/source/skills/impeccable/SKILL.md",
+      "https://github.com/pbakaus/impeccable/blob/main/skill/SKILL.src.md",
     name: "impeccable",
     topics: ["craft", "visual", "systems"],
     description:
@@ -1372,9 +1372,9 @@ const registrySource: RegistrySourceSkill[] = [
     user: "pbakaus",
     repo: "impeccable",
     rawUrl:
-      "https://raw.githubusercontent.com/pbakaus/impeccable/main/source/skills/layout/SKILL.md",
+      "https://raw.githubusercontent.com/pbakaus/impeccable/main/skill/reference/layout.md",
     githubUrl:
-      "https://github.com/pbakaus/impeccable/blob/main/source/skills/layout/SKILL.md",
+      "https://github.com/pbakaus/impeccable/blob/main/skill/reference/layout.md",
     name: "layout",
     topics: ["craft", "systems", "visual"],
     description:
@@ -1385,9 +1385,9 @@ const registrySource: RegistrySourceSkill[] = [
     user: "pbakaus",
     repo: "impeccable",
     rawUrl:
-      "https://raw.githubusercontent.com/pbakaus/impeccable/main/source/skills/optimize/SKILL.md",
+      "https://raw.githubusercontent.com/pbakaus/impeccable/main/skill/reference/optimize.md",
     githubUrl:
-      "https://github.com/pbakaus/impeccable/blob/main/source/skills/optimize/SKILL.md",
+      "https://github.com/pbakaus/impeccable/blob/main/skill/reference/optimize.md",
     name: "optimize",
     topics: ["performance", "frontend", "testing"],
     description:
@@ -1398,9 +1398,9 @@ const registrySource: RegistrySourceSkill[] = [
     user: "pbakaus",
     repo: "impeccable",
     rawUrl:
-      "https://raw.githubusercontent.com/pbakaus/impeccable/main/source/skills/overdrive/SKILL.md",
+      "https://raw.githubusercontent.com/pbakaus/impeccable/main/skill/reference/overdrive.md",
     githubUrl:
-      "https://github.com/pbakaus/impeccable/blob/main/source/skills/overdrive/SKILL.md",
+      "https://github.com/pbakaus/impeccable/blob/main/skill/reference/overdrive.md",
     name: "overdrive",
     topics: ["motion", "visual", "taste"],
     description:
@@ -1411,9 +1411,9 @@ const registrySource: RegistrySourceSkill[] = [
     user: "pbakaus",
     repo: "impeccable",
     rawUrl:
-      "https://raw.githubusercontent.com/pbakaus/impeccable/main/source/skills/polish/SKILL.md",
+      "https://raw.githubusercontent.com/pbakaus/impeccable/main/skill/reference/polish.md",
     githubUrl:
-      "https://github.com/pbakaus/impeccable/blob/main/source/skills/polish/SKILL.md",
+      "https://github.com/pbakaus/impeccable/blob/main/skill/reference/polish.md",
     name: "polish",
     topics: ["craft", "visual", "systems"],
     description:
@@ -1424,9 +1424,9 @@ const registrySource: RegistrySourceSkill[] = [
     user: "pbakaus",
     repo: "impeccable",
     rawUrl:
-      "https://raw.githubusercontent.com/pbakaus/impeccable/main/source/skills/quieter/SKILL.md",
+      "https://raw.githubusercontent.com/pbakaus/impeccable/main/skill/reference/quieter.md",
     githubUrl:
-      "https://github.com/pbakaus/impeccable/blob/main/source/skills/quieter/SKILL.md",
+      "https://github.com/pbakaus/impeccable/blob/main/skill/reference/quieter.md",
     name: "quieter",
     topics: ["visual", "systems", "craft"],
     description:
@@ -1437,9 +1437,9 @@ const registrySource: RegistrySourceSkill[] = [
     user: "pbakaus",
     repo: "impeccable",
     rawUrl:
-      "https://raw.githubusercontent.com/pbakaus/impeccable/main/source/skills/shape/SKILL.md",
+      "https://raw.githubusercontent.com/pbakaus/impeccable/main/skill/reference/shape.md",
     githubUrl:
-      "https://github.com/pbakaus/impeccable/blob/main/source/skills/shape/SKILL.md",
+      "https://github.com/pbakaus/impeccable/blob/main/skill/reference/shape.md",
     name: "shape",
     topics: ["interaction", "systems", "architecture"],
     description:
@@ -1450,9 +1450,9 @@ const registrySource: RegistrySourceSkill[] = [
     user: "pbakaus",
     repo: "impeccable",
     rawUrl:
-      "https://raw.githubusercontent.com/pbakaus/impeccable/main/source/skills/typeset/SKILL.md",
+      "https://raw.githubusercontent.com/pbakaus/impeccable/main/skill/reference/typeset.md",
     githubUrl:
-      "https://github.com/pbakaus/impeccable/blob/main/source/skills/typeset/SKILL.md",
+      "https://github.com/pbakaus/impeccable/blob/main/skill/reference/typeset.md",
     name: "typeset",
     topics: ["typography", "craft", "visual"],
     description:
