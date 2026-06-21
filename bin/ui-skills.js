@@ -3,7 +3,7 @@
 import { spawn } from "node:child_process";
 import { createRequire } from "node:module";
 import { dirname, resolve } from "node:path";
-import { fileURLToPath } from "node:url";
+import { fileURLToPath, pathToFileURL } from "node:url";
 
 const scriptPath = resolve(
   dirname(fileURLToPath(import.meta.url)),
@@ -11,7 +11,7 @@ const scriptPath = resolve(
 );
 
 const require = createRequire(import.meta.url);
-const tsxPath = require.resolve("tsx");
+const tsxPath = pathToFileURL(require.resolve("tsx")).href;
 
 const child = spawn(
   process.execPath,
