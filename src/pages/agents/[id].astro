@@ -26,11 +26,15 @@ const breadcrumbItems = [
 const siteOrigin = Astro.site ?? new URL("https://www.ui-skills.com");
 const pageUrl = new URL(`/agents/${agentId}`, siteOrigin).toString();
 const pageTitle = agent
-  ? `Skills for ${agent.name} | UI Skills`
+  ? `${agent.name} Skills for Design Engineers | UI Skills`
   : "Agent Not Found | UI Skills";
 const pageDescription = agent
-  ? agent.description
+  ? `Browse the best UI Skills for ${agent.name}. ${agent.description}`
   : "The requested agent page could not be found.";
+const focusTopics = agent?.topics.slice(0, 3) ?? [];
+const focusSentence = focusTopics.length
+  ? `Most relevant when you're working on ${focusTopics.join(", ")}.`
+  : "";
 const pageStructuredData = agent
   ? {
       "@context": "https://schema.org",
@@ -38,6 +42,7 @@ const pageStructuredData = agent
       name: agent.name,
       description: pageDescription,
       url: pageUrl,
+      keywords: [agent.name, "UI Skills", ...agent.topics],
     }
   : undefined;
 const exploreTopics = [
@@ -120,35 +125,16 @@ const structuredDataItems = agent
 
           <div class="px-4 sm:px-0">
             <div class="flex items-center gap-3">
-              <a
-                href={agent.websiteUrl ?? agent.sourceUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                class="focus-visible:outline-primary inline-flex rounded-full focus-visible:outline-1 focus-visible:outline-offset-2"
-                aria-label={`Open ${agent.name} website`}
-              >
-                <img
-                  src={agent.faviconUrl}
-                  alt={`${agent.name} logo`}
-                  width="32"
-                  height="32"
-                  loading="lazy"
-                  class="size-8 rounded-full border border-neutral-200"
-                />
-              </a>
+              <img
+                src={agent.faviconUrl}
+                alt={`${agent.name} logo`}
+                width="32"
+                height="32"
+                loading="lazy"
+                class="size-8 rounded-full border border-neutral-200"
+              />
               <h1 class="text-parchment-900 text-3xl font-medium tracking-tight">
-                {agent.websiteUrl ? (
-                  <a
-                    href={agent.websiteUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="hover:text-parchment-700 transition-colors"
-                  >
-                    {agent.name}
-                  </a>
-                ) : (
-                  agent.name
-                )}
+                {agent.name}
               </h1>
             </div>
 
@@ -157,10 +143,16 @@ const structuredDataItems = agent
             </p>
 
             <p class="text-parchment-500 mt-4 max-w-2xl text-lg leading-snug text-pretty">
-              UI Skills helps find the right skills depending on the current
+              UI Skills helps you find the right skills depending on the current
               context so {agent.name} can load the most useful guidance across
               sessions.
             </p>
+
+            {focusSentence ? (
+              <p class="text-parchment-500 mt-3 max-w-2xl text-base leading-snug text-pretty">
+                {focusSentence}
+              </p>
+            ) : null}
           </div>
 
           <section class="bg-parchment-200/40 rounded-[12px] p-4 sm:p-5">
