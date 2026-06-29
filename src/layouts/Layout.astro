@@ -4,7 +4,6 @@ import firaMono400Woff2 from "@fontsource/fira-mono/files/fira-mono-latin-400-no
 import { getGithubStars } from "../lib/github-stars.ts";
 import NewsletterInput from "../ui/newsletter-input";
 import { skills } from "../data/skills";
-import { registry } from "../data/registry";
 import Footer from "../ui/footer.astro";
 import { CommandDialog } from "../ui/command-dialog";
 import GitHubStarButton from "../ui/github-star-button.astro";
@@ -61,46 +60,14 @@ const twitterImageAltText = twitterImageAlt ?? "UI Skills social preview image";
 const ogTypeValue = ogType ?? "website";
 const siteNameValue = siteName ?? "UI Skills";
 const twitterSiteHandle = twitterSite ?? "@ibelick";
-const normalizeSearchContent = (value: string) =>
-  value
-    .replace(/^---[\s\S]*?---/, " ")
-    .replace(/`{1,3}[\s\S]*?`{1,3}/g, " ")
-    .replace(/<\/script/gi, "<\\/script")
-    .replace(/\s+/g, " ")
-    .trim()
-    .slice(0, 2000);
-
-const commandItems = await Promise.all(
-  skills.map(async (skill) => {
-    const registryEntry = registry.find(
-      (entry) => entry.pathSlug === skill.pathSlug,
-    );
-    let searchContent = skill.description ?? "";
-
-    if (registryEntry?.rawUrl) {
-      try {
-        const response = await fetch(registryEntry.rawUrl);
-        if (response.ok) {
-          const raw = await response.text();
-          searchContent = normalizeSearchContent(
-            `${skill.description ?? ""} ${raw}`,
-          );
-        }
-      } catch {
-        searchContent = normalizeSearchContent(searchContent);
-      }
-    }
-
-    return {
-      slug: skill.slug,
-      pathSlug: skill.pathSlug,
-      label: skill.label,
-      sourceLabel: skill.sourceLabel,
-      description: skill.description,
-      searchContent,
-    };
-  }),
-);
+const commandItems = skills.map((skill) => ({
+  slug: skill.slug,
+  pathSlug: skill.pathSlug,
+  label: skill.label,
+  sourceLabel: skill.sourceLabel,
+  description: skill.description,
+  searchContent: skill.description ?? "",
+}));
 
 const githubStars = await getGithubStars();
 ---
