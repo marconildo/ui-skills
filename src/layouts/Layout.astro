@@ -1,6 +1,7 @@
 ---
 import "../styles/global.css";
 import firaMono400Woff2 from "@fontsource/fira-mono/files/fira-mono-latin-400-normal.woff2?url";
+import { getGithubStars } from "../lib/github-stars.ts";
 import NewsletterInput from "../ui/newsletter-input";
 import { skills } from "../data/skills";
 import { registry } from "../data/registry";
@@ -100,6 +101,8 @@ const commandItems = await Promise.all(
     };
   }),
 );
+
+const githubStars = await getGithubStars();
 ---
 
 <!doctype html>
@@ -161,7 +164,10 @@ const commandItems = await Promise.all(
       >
         <div class="flex items-center gap-1">
           <CommandDialog items={commandItems} client:load />
-          <GitHubStarButton href="https://github.com/ibelick/ui-skills" />
+          <GitHubStarButton
+            href="https://github.com/ibelick/ui-skills"
+            label={githubStars?.label}
+          />
         </div>
       </header>
       <main id="main-content">
