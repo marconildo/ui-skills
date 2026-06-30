@@ -30,6 +30,7 @@ export type TopicSlug =
   | "architecture"
   | "frameworks"
   | "testing"
+  | "debugging"
   | "tooling"
   | "video"
   // Framework-specific topics
@@ -1113,8 +1114,7 @@ const registrySource: RegistrySourceSkill[] = [
     repo: "slide-wright",
     rawUrl:
       "https://raw.githubusercontent.com/arifszn/slide-wright/main/SKILL.md",
-    githubUrl:
-      "https://github.com/arifszn/slide-wright/blob/main/SKILL.md",
+    githubUrl: "https://github.com/arifszn/slide-wright/blob/main/SKILL.md",
     name: "slide-wright",
     topics: ["video", "visual", "craft"],
     description:
@@ -1496,6 +1496,261 @@ const registrySource: RegistrySourceSkill[] = [
     topics: ["visual", "tooling", "frontend"],
     description:
       "Official daisyUI component library skill, providing docs, class names, examples and code examples to generate better daisyUI code.",
+  },
+  {
+    slug: "compact-landing",
+    user: "Danilaa1",
+    repo: "compact-landing-skill",
+    rawUrl:
+      "https://raw.githubusercontent.com/Danilaa1/compact-landing-skill/main/skills/compact-landing/SKILL.md",
+    githubUrl:
+      "https://github.com/Danilaa1/compact-landing-skill/blob/main/skills/compact-landing/SKILL.md",
+    name: "compact-landing",
+    topics: ["visual", "craft", "typography", "frontend"],
+    description:
+      "Build compact premium landing pages with clear CTA hierarchy, quiet typography, and minimal visual noise.",
+  },
+  {
+    slug: "text-to-lottie",
+    user: "diffusionstudio",
+    repo: "lottie",
+    rawUrl:
+      "https://raw.githubusercontent.com/diffusionstudio/lottie/main/skills/text-to-lottie/SKILL.md",
+    githubUrl:
+      "https://github.com/diffusionstudio/lottie/blob/main/skills/text-to-lottie/SKILL.md",
+    name: "text-to-lottie",
+    topics: ["motion", "visual", "frontend"],
+    description:
+      "Turn text prompts into polished Lottie animations for motion-heavy UI work.",
+  },
+  {
+    slug: "brag",
+    user: "latent-spaces",
+    repo: "brag",
+    rawUrl:
+      "https://raw.githubusercontent.com/latent-spaces/brag/main/skills/brag/SKILL.md",
+    githubUrl:
+      "https://github.com/latent-spaces/brag/blob/main/skills/brag/SKILL.md",
+    name: "brag",
+    topics: ["video", "motion", "frontend"],
+    description:
+      "Turn a finished project into a short shareable launch video with motion, music, and copy.",
+  },
+  {
+    slug: "build-primitive",
+    user: "PrototyperAI",
+    repo: "prototyper-ui",
+    rawUrl: "https://prototyper-ui.com/skills/build-primitive",
+    githubUrl: "https://github.com/PrototyperAI/prototyper-ui",
+    name: "build-primitive",
+    topics: ["accessibility", "interaction", "systems", "testing", "frontend"],
+    description:
+      "Build foundational UI primitives from scratch with strong ARIA, keyboard, focus, and state handling.",
+  },
+  {
+    slug: "animation-vocabulary",
+    user: "emilkowalski",
+    repo: "skills",
+    rawUrl:
+      "https://raw.githubusercontent.com/emilkowalski/skills/main/skills/animation-vocabulary/SKILL.md",
+    githubUrl:
+      "https://github.com/emilkowalski/skills/blob/main/skills/animation-vocabulary/SKILL.md",
+    name: "animation-vocabulary",
+    topics: ["motion", "visual", "craft"],
+    description:
+      "Sharpen motion language so animation choices feel deliberate and consistent.",
+  },
+  {
+    slug: "review-animations",
+    user: "emilkowalski",
+    repo: "skills",
+    rawUrl:
+      "https://raw.githubusercontent.com/emilkowalski/skills/main/skills/review-animations/SKILL.md",
+    githubUrl:
+      "https://github.com/emilkowalski/skills/blob/main/skills/review-animations/SKILL.md",
+    name: "review-animations",
+    topics: ["motion", "performance", "testing", "interaction"],
+    description:
+      "Review animation quality, timing, and motion consistency with a production-critical eye.",
+  },
+  {
+    slug: "refine-live",
+    user: "Jakubantalik",
+    repo: "transitions.dev",
+    rawUrl:
+      "https://raw.githubusercontent.com/Jakubantalik/transitions.dev/main/refine/.agents/skills/refine-live/SKILL.md",
+    githubUrl:
+      "https://github.com/Jakubantalik/transitions.dev/blob/main/refine/.agents/skills/refine-live/SKILL.md",
+    name: "refine-live",
+    topics: ["motion", "visual", "interaction", "frontend"],
+    description:
+      "Iteratively refine UI in live sessions with a focus on motion, polish, and interaction detail.",
+  },
+  {
+    slug: "engineering",
+    user: "mattpocock",
+    repo: "skills",
+    rawUrl:
+      "https://raw.githubusercontent.com/mattpocock/skills/main/skills/engineering/README.md",
+    githubUrl:
+      "https://github.com/mattpocock/skills/blob/main/skills/engineering/README.md",
+    name: "engineering",
+    topics: ["architecture", "testing", "tooling", "debugging"],
+    description:
+      "Routing bundle for code work covering planning, debugging, TDD, architecture, and execution flows.",
+  },
+  {
+    slug: "ask-matt",
+    user: "mattpocock",
+    repo: "skills",
+    rawUrl:
+      "https://raw.githubusercontent.com/mattpocock/skills/main/skills/engineering/ask-matt/SKILL.md",
+    githubUrl:
+      "https://github.com/mattpocock/skills/blob/main/skills/engineering/ask-matt/SKILL.md",
+    name: "ask-matt",
+    topics: ["tooling", "architecture", "frontend"],
+    description:
+      "Router that picks the right Matt Pocock engineering flow for the current task.",
+  },
+  {
+    slug: "grill-with-docs",
+    user: "mattpocock",
+    repo: "skills",
+    rawUrl:
+      "https://raw.githubusercontent.com/mattpocock/skills/main/skills/engineering/grill-with-docs/SKILL.md",
+    githubUrl:
+      "https://github.com/mattpocock/skills/blob/main/skills/engineering/grill-with-docs/SKILL.md",
+    name: "grill-with-docs",
+    topics: ["architecture", "systems", "tooling"],
+    description:
+      "Sharpens the domain model and updates supporting docs while grilling through design choices.",
+  },
+  {
+    slug: "triage",
+    user: "mattpocock",
+    repo: "skills",
+    rawUrl:
+      "https://raw.githubusercontent.com/mattpocock/skills/main/skills/engineering/triage/SKILL.md",
+    githubUrl:
+      "https://github.com/mattpocock/skills/blob/main/skills/engineering/triage/SKILL.md",
+    name: "triage",
+    topics: ["tooling", "testing", "architecture"],
+    description: "Moves issues through a structured triage state machine.",
+  },
+  {
+    slug: "improve-codebase-architecture",
+    user: "mattpocock",
+    repo: "skills",
+    rawUrl:
+      "https://raw.githubusercontent.com/mattpocock/skills/main/skills/engineering/improve-codebase-architecture/SKILL.md",
+    githubUrl:
+      "https://github.com/mattpocock/skills/blob/main/skills/engineering/improve-codebase-architecture/SKILL.md",
+    name: "improve-codebase-architecture",
+    topics: ["architecture", "systems", "testing"],
+    description:
+      "Scans a codebase for deepening opportunities and turns them into a prioritized visual report.",
+  },
+  {
+    slug: "setup-matt-pocock-skills",
+    user: "mattpocock",
+    repo: "skills",
+    rawUrl:
+      "https://raw.githubusercontent.com/mattpocock/skills/main/skills/engineering/setup-matt-pocock-skills/SKILL.md",
+    githubUrl:
+      "https://github.com/mattpocock/skills/blob/main/skills/engineering/setup-matt-pocock-skills/SKILL.md",
+    name: "setup-matt-pocock-skills",
+    topics: ["tooling", "architecture"],
+    description:
+      "One-time repo setup for the engineering skill workflow and related conventions.",
+  },
+  {
+    slug: "to-issues",
+    user: "mattpocock",
+    repo: "skills",
+    rawUrl:
+      "https://raw.githubusercontent.com/mattpocock/skills/main/skills/engineering/to-issues/SKILL.md",
+    githubUrl:
+      "https://github.com/mattpocock/skills/blob/main/skills/engineering/to-issues/SKILL.md",
+    name: "to-issues",
+    topics: ["architecture", "tooling", "testing"],
+    description: "Breaks a plan or PRD into independently actionable issues.",
+  },
+  {
+    slug: "to-prd",
+    user: "mattpocock",
+    repo: "skills",
+    rawUrl:
+      "https://raw.githubusercontent.com/mattpocock/skills/main/skills/engineering/to-prd/SKILL.md",
+    githubUrl:
+      "https://github.com/mattpocock/skills/blob/main/skills/engineering/to-prd/SKILL.md",
+    name: "to-prd",
+    topics: ["architecture", "tooling", "frontend"],
+    description:
+      "Turns a conversation into a PRD and publishes it to the issue tracker.",
+  },
+  {
+    slug: "prototype",
+    user: "mattpocock",
+    repo: "skills",
+    rawUrl:
+      "https://raw.githubusercontent.com/mattpocock/skills/main/skills/engineering/prototype/SKILL.md",
+    githubUrl:
+      "https://github.com/mattpocock/skills/blob/main/skills/engineering/prototype/SKILL.md",
+    name: "prototype",
+    topics: ["frontend", "interaction", "systems"],
+    description:
+      "Builds throwaway prototypes to answer design or logic questions quickly.",
+  },
+  {
+    slug: "diagnosing-bugs",
+    user: "mattpocock",
+    repo: "skills",
+    rawUrl:
+      "https://raw.githubusercontent.com/mattpocock/skills/main/skills/engineering/diagnosing-bugs/SKILL.md",
+    githubUrl:
+      "https://github.com/mattpocock/skills/blob/main/skills/engineering/diagnosing-bugs/SKILL.md",
+    name: "diagnosing-bugs",
+    topics: ["debugging", "testing", "frontend"],
+    description:
+      "Systematic bug diagnosis through reproduce, minimize, hypothesize, instrument, and fix.",
+  },
+  {
+    slug: "tdd",
+    user: "mattpocock",
+    repo: "skills",
+    rawUrl:
+      "https://raw.githubusercontent.com/mattpocock/skills/main/skills/engineering/tdd/SKILL.md",
+    githubUrl:
+      "https://github.com/mattpocock/skills/blob/main/skills/engineering/tdd/SKILL.md",
+    name: "tdd",
+    topics: ["testing", "tooling", "frontend"],
+    description:
+      "Red-green-refactor workflow for building features and fixes one slice at a time.",
+  },
+  {
+    slug: "domain-modeling",
+    user: "mattpocock",
+    repo: "skills",
+    rawUrl:
+      "https://raw.githubusercontent.com/mattpocock/skills/main/skills/engineering/domain-modeling/SKILL.md",
+    githubUrl:
+      "https://github.com/mattpocock/skills/blob/main/skills/engineering/domain-modeling/SKILL.md",
+    name: "domain-modeling",
+    topics: ["architecture", "systems", "frontend"],
+    description: "Builds and sharpens project domain models and terminology.",
+  },
+  {
+    slug: "codebase-design",
+    user: "mattpocock",
+    repo: "skills",
+    rawUrl:
+      "https://raw.githubusercontent.com/mattpocock/skills/main/skills/engineering/codebase-design/SKILL.md",
+    githubUrl:
+      "https://github.com/mattpocock/skills/blob/main/skills/engineering/codebase-design/SKILL.md",
+    name: "codebase-design",
+    topics: ["architecture", "systems", "testing"],
+    description:
+      "Guidance for designing deep modules with small interfaces and clean seams.",
   },
 ];
 

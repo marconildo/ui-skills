@@ -100,6 +100,13 @@ export const topics: Topic[] = [
     isDesignCore: false,
   },
   {
+    slug: "debugging",
+    label: "Debugging",
+    description:
+      "Root-cause analysis, instrumentation, and bug-fixing workflows.",
+    isDesignCore: false,
+  },
+  {
     slug: "tooling",
     label: "Tooling",
     description:
@@ -188,15 +195,16 @@ export const relatedTopicSlugs: Record<TopicSlug, TopicSlug[]> = {
   systems: ["architecture", "frontend", "tooling", "craft"],
   visual: ["color", "typography", "craft", "taste"],
   interaction: ["motion", "visual", "accessibility", "frontend"],
-  performance: ["tooling", "frontend", "testing", "motion"],
+  performance: ["tooling", "frontend", "testing", "motion", "debugging"],
   craft: ["visual", "systems", "typography", "taste"],
   taste: ["visual", "craft", "interaction", "motion"],
   typography: ["visual", "craft", "systems", "accessibility"],
   color: ["visual", "accessibility", "systems", "craft"],
   "3d": ["threejs", "visual", "interaction", "performance"],
-  frontend: ["architecture", "tooling", "performance", "testing"],
+  frontend: ["architecture", "tooling", "performance", "testing", "debugging"],
   architecture: ["systems", "frontend", "tooling", "testing"],
-  testing: ["accessibility", "frontend", "performance", "tooling"],
+  testing: ["accessibility", "frontend", "performance", "tooling", "debugging"],
+  debugging: ["testing", "performance", "frontend", "tooling"],
   tooling: ["frontend", "performance", "architecture", "testing"],
   video: ["motion", "remotion", "visual", "frontend"],
   nextjs: ["frontend", "performance", "tooling", "architecture"],
