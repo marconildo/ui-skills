@@ -31,6 +31,7 @@ export type TopicSlug =
   | "frameworks"
   | "testing"
   | "debugging"
+  | "code-quality"
   | "tooling"
   | "video"
   // Framework-specific topics
@@ -1753,6 +1754,31 @@ const registrySource: RegistrySourceSkill[] = [
     topics: ["architecture", "systems", "testing"],
     description:
       "Guidance for designing deep modules with small interfaces and clean seams.",
+  },
+  {
+    slug: "improve",
+    user: "shadcn",
+    repo: "improve",
+    rawUrl:
+      "https://raw.githubusercontent.com/shadcn/improve/main/skills/improve/SKILL.md",
+    githubUrl:
+      "https://github.com/shadcn/improve/blob/main/skills/improve/SKILL.md",
+    name: "improve",
+    topics: ["code-quality", "architecture", "testing"],
+    description:
+      "Survey any codebase as a senior advisor and produce prioritized, self-contained implementation plans for OTHER models/agents to execute. Strictly read-only on source code — never implements, fixes, or refactors anything itself. Use when asked to audit a codebase, find improvement opportunities (bugs, security, performance, test coverage, tech debt, migrations, DX), suggest features or take the project next, or generate handoff plans for another agent to implement.",
+  },
+  {
+    slug: "thermo-nuclear-code-quality-review",
+    user: "cursor",
+    repo: "plugins",
+    rawUrl:
+      "https://www.skills.sh/cursor/plugins/thermo-nuclear-code-quality-review",
+    githubUrl: "",
+    name: "thermo-nuclear-code-quality-review",
+    topics: ["code-quality", "architecture", "testing"],
+    description:
+      "Run an extremely strict maintainability review for abstraction quality, giant files, and spaghetti-condition growth.",
   },
 ];
 
