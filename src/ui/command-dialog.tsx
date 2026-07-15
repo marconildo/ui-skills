@@ -59,6 +59,8 @@ const idForPath = (pathSlug: string) =>
   `skills-search-item-${pathSlug.replace(/[^a-zA-Z0-9_-]/g, "-")}`;
 const keycapClass =
   "bg-parchment-200/70 text-parchment-700 rounded-[4px] px-1.5 py-0.5 text-[10px] font-medium leading-none font-mono";
+const searchShortcutClass =
+  "pointer-events-none ml-0 inline-flex h-[18px] select-none items-center gap-0.5 rounded border border-parchment-200 bg-parchment-900/[0.04] px-1 font-mono text-[10px]";
 
 const plainText = (value?: string) =>
   (value ?? "")
@@ -313,7 +315,22 @@ export function CommandDialog({ items }: CommandDialogProps) {
           <path d="m21 21-4.3-4.3" />
         </svg>
         Search
-        <kbd className={keycapClass}>⌘K</kbd>
+        <kbd className={searchShortcutClass}>
+          <svg
+            width="10"
+            height="10"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            aria-hidden="true"
+          >
+            <path d="M18 3a3 3 0 0 0-3 3v12a3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3H6a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3V6a3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3h12a3 3 0 0 0 3-3 3 3 0 0 0-3-3z" />
+          </svg>
+          K
+        </kbd>
       </DialogPrimitive.Trigger>
 
       <DialogPrimitive.Portal>
