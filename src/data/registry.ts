@@ -1346,6 +1346,19 @@ const registrySource: RegistrySourceSkill[] = [
       "Survey a React codebase using React Doctor's findings, then produce prioritized audits and self-contained implementation plans without modifying source code.",
   },
   {
+    slug: "improve-ui",
+    user: "ibelick",
+    repo: "ui-skills",
+    rawUrl:
+      "https://raw.githubusercontent.com/ibelick/ui-skills/main/skills/improve-ui/SKILL.md",
+    githubUrl:
+      "https://github.com/ibelick/ui-skills/blob/main/skills/improve-ui/SKILL.md",
+    name: "improve-ui",
+    topics: ["visual", "systems", "frontend"],
+    description:
+      "Audit an existing product surface against its own design evidence, identify verified UI problems, and write self-contained implementation plans for another agent without modifying product source.",
+  },
+  {
     slug: "rams",
     user: "rams",
     repo: "rams-ai",
