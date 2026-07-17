@@ -2365,6 +2365,32 @@ const registrySource: RegistrySourceSkill[] = [
     description:
       "Lottie and dotLottie integration guidance for playback control, interactivity, runtime theming, and cross-platform export workflows.",
   },
+  {
+    slug: "conductor-rewrite-performance",
+    user: "brotzky",
+    repo: "performance-skills",
+    rawUrl:
+      "https://raw.githubusercontent.com/brotzky/performance-skills/main/performance/skills/conductor-rewrite-performance/SKILL.md",
+    githubUrl:
+      "https://github.com/brotzky/performance-skills/blob/main/performance/skills/conductor-rewrite-performance/SKILL.md",
+    name: "conductor-rewrite-performance",
+    topics: ["performance", "frontend", "debugging"],
+    description:
+      "Performance guidance for local-first desktop apps, including React render optimization, streaming list virtualization, profiling, and background work.",
+  },
+  {
+    slug: "linear-local-first-architecture",
+    user: "brotzky",
+    repo: "performance-skills",
+    rawUrl:
+      "https://raw.githubusercontent.com/brotzky/performance-skills/main/performance/skills/linear-local-first-architecture/SKILL.md",
+    githubUrl:
+      "https://github.com/brotzky/performance-skills/blob/main/performance/skills/linear-local-first-architecture/SKILL.md",
+    name: "linear-local-first-architecture",
+    topics: ["performance", "architecture", "frontend"],
+    description:
+      "Local-first architecture guidance for instant-feeling web apps, optimistic updates, bundle loading, offline behavior, and responsive UI motion.",
+  },
 ];
 
 const buildInitialPathSlug = (entry: RegistrySourceSkill) => {
