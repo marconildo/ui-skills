@@ -14,7 +14,6 @@ type CommandItem = {
   label: string;
   sourceLabel?: string;
   description?: string;
-  searchContent?: string;
 };
 
 type CommandDialogProps = {
@@ -32,7 +31,6 @@ type IndexedCommandItem = CommandItem & {
   pathSlugLower: string;
   sourceLower: string;
   descriptionLower: string;
-  contentLower: string;
 };
 
 const toSearchResult = (
@@ -45,7 +43,6 @@ const toSearchResult = (
   label: item.label,
   sourceLabel: item.sourceLabel,
   description: item.description,
-  searchContent: item.searchContent,
   score,
   snippet,
 });
@@ -128,8 +125,6 @@ export function CommandDialog({ items }: CommandDialogProps) {
   const indexedItems = useMemo<IndexedCommandItem[]>(
     () =>
       items.map((item) => {
-        const contentLower = plainText(item.searchContent).toLowerCase();
-
         return {
           ...item,
           slugLower: item.slug.toLowerCase(),
@@ -137,7 +132,6 @@ export function CommandDialog({ items }: CommandDialogProps) {
           pathSlugLower: item.pathSlug.toLowerCase(),
           sourceLower: (item.sourceLabel ?? "").toLowerCase(),
           descriptionLower: (item.description ?? "").toLowerCase(),
-          contentLower,
         };
       }),
     [items],
@@ -174,9 +168,9 @@ export function CommandDialog({ items }: CommandDialogProps) {
     const value = query.trim().toLowerCase();
 
     if (!value) {
-      return indexedItems.slice(0, MAX_DEFAULT_ITEMS).map((item) =>
-        toSearchResult(item, 0, item.description ?? ""),
-      );
+      return indexedItems
+        .slice(0, MAX_DEFAULT_ITEMS)
+        .map((item) => toSearchResult(item, 0, item.description ?? ""));
     }
 
     return indexedItems
@@ -189,14 +183,13 @@ export function CommandDialog({ items }: CommandDialogProps) {
         if (item.pathSlugLower.includes(value)) score += 70;
         if (item.sourceLower.includes(value)) score += 40;
         if (item.descriptionLower.includes(value)) score += 30;
-        if (item.contentLower.includes(value)) score += 16;
+        if (item.descriptionLower.includes(value)) score += 16;
 
         if (!score) {
           return null;
         }
 
         const snippet =
-          createSnippet(item.searchContent ?? "", value) ||
           createSnippet(item.description ?? "", value) ||
           item.description ||
           "";
@@ -393,10 +386,11 @@ export function CommandDialog({ items }: CommandDialogProps) {
                   type="button"
                   onClick={() => onSelect(item.pathSlug)}
                   onMouseEnter={() => setActiveIndex(index)}
-                  className={`w-full rounded-[8px] px-3 py-2 text-left transition-colors ${index === activeIndex
-                    ? "bg-parchment-100"
-                    : "hover:bg-parchment-100"
-                    }`}
+                  className={`w-full rounded-[8px] px-3 py-2 text-left transition-colors ${
+                    index === activeIndex
+                      ? "bg-parchment-100"
+                      : "hover:bg-parchment-100"
+                  }`}
                 >
                   <div className="text-parchment-900 text-sm font-medium">
                     {highlightText(item.slug, query)}

@@ -92,6 +92,10 @@ export const getRemoteSkill = async (
   const cachedContent = cache
     ? await readCachedContent(cache, cacheKey)
     : undefined;
+  if (cachedContent !== undefined) {
+    return { content: cachedContent, stale: false };
+  }
+
   const controller = new AbortController();
   const timeout = setTimeout(() => controller.abort(), FETCH_TIMEOUT_MS);
 

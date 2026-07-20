@@ -59,7 +59,6 @@ const commandItems = skills.map((skill) => ({
   label: skill.label,
   sourceLabel: skill.sourceLabel,
   description: skill.description,
-  searchContent: skill.description ?? "",
 }));
 
 const githubStars = await getGithubStars();
@@ -111,7 +110,7 @@ const githubStars = await getGithubStars();
         class="absolute inset-x-0 top-0 z-10 flex justify-end px-4 pt-6 sm:px-8"
       >
         <div class="flex items-center gap-1">
-          <CommandDialog items={commandItems} client:load />
+          <CommandDialog items={commandItems} client:idle />
           <GitHubStarButton
             href="https://github.com/ibelick/ui-skills"
             label={githubStars?.label}
@@ -121,7 +120,7 @@ const githubStars = await getGithubStars();
       <main id="main-content">
         <slot />
       </main>
-      <NewsletterInput client:load />
+      <NewsletterInput client:visible />
       <Footer />
     </div>
   </body>

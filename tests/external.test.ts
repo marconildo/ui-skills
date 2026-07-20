@@ -21,7 +21,7 @@ afterEach(() => {
 });
 
 describe("remote skill content", () => {
-  test("uses cached content when the upstream request fails", async () => {
+  test("serves cached content without fetching upstream", async () => {
     let fetchCalls = 0;
     const cache = {
       match: async () => new Response("cached skill"),
@@ -30,18 +30,18 @@ describe("remote skill content", () => {
     setCache(cache);
     globalThis.fetch = async () => {
       fetchCalls += 1;
-      return new Response("unavailable", { status: 503 });
+      throw new Error("upstream should not be called");
     };
 
     const result = await getRemoteSkill("https://example.com/skill.md");
 
-    assert.deepEqual(result, { content: "cached skill", stale: true });
-    assert.equal(fetchCalls, 1);
+    assert.deepEqual(result, { content: "cached skill", stale: false });
+    assert.equal(fetchCalls, 0);
   });
 
-  test("preserves upstream 404 semantics even when cached content exists", async () => {
+  test("preserves upstream 404 semantics on a cache miss", async () => {
     setCache({
-      match: async () => new Response("deleted skill"),
+      match: async () => undefined,
       put: async () => undefined,
     });
     globalThis.fetch = async () => new Response("missing", { status: 404 });
