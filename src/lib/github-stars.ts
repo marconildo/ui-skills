@@ -21,19 +21,26 @@ export type GithubStars = {
 const REPO_URL = "https://api.github.com/repos/ibelick/ui-skills";
 const CACHE_KEY = "https://www.ui-skills.com/api/github-stars";
 const CACHE_SECONDS = 60 * 60 * 24;
+const FETCH_TIMEOUT_MS = 5000;
 
 export const getGithubStars = async (): Promise<GithubStars | null> => {
-  const cache = (globalThis as typeof globalThis & { caches?: CacheStorageLike })
-    .caches?.default;
+  const cache = (
+    globalThis as typeof globalThis & { caches?: CacheStorageLike }
+  ).caches?.default;
   const cacheKey = new Request(CACHE_KEY);
   const cached = cache ? await cache.match(cacheKey) : undefined;
 
   if (cached) {
-    const cachedData = (await cached.clone().json().catch(() => null)) as
-      | GithubStars
-      | null;
+    const cachedData = (await cached
+      .clone()
+      .json()
+      .catch(() => null)) as GithubStars | null;
 
-    if ((cachedData?.stars ?? 0) > 0 && cachedData?.label && cachedData.label !== "0+") {
+    if (
+      (cachedData?.stars ?? 0) > 0 &&
+      cachedData?.label &&
+      cachedData.label !== "0+"
+    ) {
       return cachedData;
     }
   }
@@ -50,18 +57,42 @@ export const getGithubStars = async (): Promise<GithubStars | null> => {
   }
 
   let response: Response;
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), FETCH_TIMEOUT_MS);
 
   try {
-    response = await fetch(REPO_URL, { headers });
+    response = await fetch(REPO_URL, { headers, signal: controller.signal });
   } catch {
-    return cached ? ((await cached.clone().json().catch(() => null)) as GithubStars | null) : null;
+    return cached
+      ? ((await cached
+          .clone()
+          .json()
+          .catch(() => null)) as GithubStars | null)
+      : null;
+  } finally {
+    clearTimeout(timeout);
   }
 
   if (!response.ok) {
-    return cached ? ((await cached.clone().json().catch(() => null)) as GithubStars | null) : null;
+    return cached
+      ? ((await cached
+          .clone()
+          .json()
+          .catch(() => null)) as GithubStars | null)
+      : null;
   }
 
-  const payload = (await response.json()) as GitHubRepoResponse;
+  let payload: GitHubRepoResponse;
+  try {
+    payload = (await response.json()) as GitHubRepoResponse;
+  } catch {
+    return cached
+      ? ((await cached
+          .clone()
+          .json()
+          .catch(() => null)) as GithubStars | null)
+      : null;
+  }
   const stars = payload.stargazers_count ?? 0;
 
   if (stars <= 0) {

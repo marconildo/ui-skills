@@ -15,7 +15,8 @@
     "format": "prettier --write .",
     "typecheck": "astro check",
     "test": "node --import tsx --test tests/*.test.ts",
-    "check": "npm run typecheck && npm test && npm run build"
+    "smoke": "node tests/smoke.mjs",
+    "check": "npm run typecheck && npm test && npm run build && npm run smoke"
   },
   "dependencies": {
     "@astrojs/cloudflare": "^14.1.4",

@@ -6,6 +6,7 @@ import { skills } from "../data/skills";
 import Footer from "../ui/footer.astro";
 import { CommandDialog } from "../ui/command-dialog";
 import GitHubStarButton from "../ui/github-star-button.astro";
+import { serializeJsonLd } from "../lib/serialize-json-ld";
 
 type Props = {
   structuredData?: Record<string, unknown> | Array<Record<string, unknown>>;
@@ -93,7 +94,7 @@ const githubStars = await getGithubStars();
         <script
           is:inline
           type="application/ld+json"
-          set:html={JSON.stringify(structuredData)}
+          set:html={serializeJsonLd(structuredData)}
         />
       ) : null
     }

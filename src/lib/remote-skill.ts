@@ -54,6 +54,7 @@ const readBoundedText = async (response: Response) => {
 
       totalBytes += value.byteLength;
       if (totalBytes > MAX_CONTENT_BYTES) {
+        await reader.cancel();
         throw new RemoteSkillError("Skill content is too large", 502);
       }
       chunks.push(value);
@@ -125,6 +126,9 @@ export const getRemoteSkill = async (
 
     return { content, stale: false };
   } catch (error) {
+    if (error instanceof RemoteSkillError && error.status === 404) {
+      throw error;
+    }
     if (cachedContent !== undefined) {
       return { content: cachedContent, stale: true };
     }
