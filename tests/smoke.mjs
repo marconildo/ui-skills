@@ -2,8 +2,8 @@ import { spawn } from "node:child_process";
 
 const port = 4399;
 const server = spawn(
-  "npm",
-  ["run", "preview", "--", "--host", "127.0.0.1", "--port", `${port}`],
+  "npx",
+  ["wrangler", "dev", "--local", "--ip", "127.0.0.1", "--port", `${port}`],
   {
     stdio: ["ignore", "pipe", "pipe"],
   },
@@ -40,6 +40,10 @@ try {
   }
   if (homepage.headers.get("content-security-policy") === null) {
     throw new Error("Homepage is missing Content-Security-Policy");
+  }
+  const homepageBody = await homepage.text();
+  if (!/^<!doctype html>/i.test(homepageBody)) {
+    throw new Error(`Homepage did not return HTML: ${homepageBody.slice(0, 200)}`);
   }
 
   const registry = await fetch(`http://127.0.0.1:${port}/skills/registry.json`);
