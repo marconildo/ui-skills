@@ -10,32 +10,13 @@ import Breadcrumbs from "../../ui/breadcrumbs.astro";
 import SkillCard from "../../ui/skill-card.astro";
 import SkillNav from "../../ui/skill-nav.astro";
 import TopicTag from "../../ui/topic-tag.astro";
-import { marked } from "marked";
+import { renderSkillMarkdown } from "../../lib/render-skill-markdown";
 
 const titleize = (value: string) =>
   value
     .split("-")
     .map((word) => `${word.charAt(0).toUpperCase()}${word.slice(1)}`)
     .join(" ");
-
-const rewriteRelativeLinksToRepo = (html: string, baseUrl: string) =>
-  html.replace(/href="([^"]+)"/g, (match, href: string) => {
-    if (
-      href.startsWith("http://") ||
-      href.startsWith("https://") ||
-      href.startsWith("mailto:") ||
-      href.startsWith("#")
-    ) {
-      return match;
-    }
-
-    try {
-      const resolved = new URL(href, baseUrl).toString();
-      return `href="${resolved}"`;
-    } catch {
-      return match;
-    }
-  });
 
 export function getStaticPaths() {
   const topicGroupPaths = Array.from(
@@ -214,11 +195,16 @@ const ownerScopedSkills = skill
 const navigationSkills =
   ownerScopedSkills.length > 1 ? ownerScopedSkills : globalSkills;
 const currentSkillIndex = skill
-  ? navigationSkills.findIndex((entry: Skill) => entry.pathSlug === skill.pathSlug)
+  ? navigationSkills.findIndex(
+      (entry: Skill) => entry.pathSlug === skill.pathSlug,
+    )
   : -1;
 const previousSkill =
   skill && currentSkillIndex >= 0
-    ? navigationSkills[(currentSkillIndex - 1 + navigationSkills.length) % navigationSkills.length]
+    ? navigationSkills[
+        (currentSkillIndex - 1 + navigationSkills.length) %
+          navigationSkills.length
+      ]
     : undefined;
 const nextSkill =
   skill && currentSkillIndex >= 0
@@ -400,17 +386,8 @@ if (skill) {
       if (response.ok) {
         skillRaw = await response.text();
         githubUrl = registryEntry.githubUrl;
-        let contentToRender = skillRaw;
-
-        if (contentToRender.startsWith("---")) {
-          const parts = contentToRender.split("---");
-          if (parts.length >= 3) {
-            contentToRender = parts.slice(2).join("---").trim();
-          }
-        }
-        const parsedHtml = await marked.parse(contentToRender);
-        displayContent = rewriteRelativeLinksToRepo(
-          parsedHtml,
+        displayContent = await renderSkillMarkdown(
+          skillRaw,
           registryEntry.githubUrl,
         );
       } else {

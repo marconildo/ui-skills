@@ -1,6 +1,5 @@
 ---
 import "../styles/global.css";
-import firaMono400Woff2 from "@fontsource/fira-mono/files/fira-mono-latin-400-normal.woff2?url";
 import { getGithubStars } from "../lib/github-stars.ts";
 import NewsletterInput from "../ui/newsletter-input";
 import { skills } from "../data/skills";
@@ -9,7 +8,6 @@ import { CommandDialog } from "../ui/command-dialog";
 import GitHubStarButton from "../ui/github-star-button.astro";
 
 type Props = {
-  preloadFiraMono?: boolean;
   structuredData?: Record<string, unknown> | Array<Record<string, unknown>>;
   title?: string;
   description?: string;
@@ -24,7 +22,6 @@ type Props = {
 };
 
 const {
-  preloadFiraMono,
   structuredData,
   title,
   description,
@@ -38,9 +35,7 @@ const {
   siteName,
 } = Astro.props as Props;
 const canonicalPath =
-  Astro.url.pathname === "/"
-    ? "/"
-    : Astro.url.pathname.replace(/\/+$/, "");
+  Astro.url.pathname === "/" ? "/" : Astro.url.pathname.replace(/\/+$/, "");
 const canonicalUrl = new URL(
   canonicalPath,
   Astro.site ?? "https://www.ui-skills.com",
@@ -52,8 +47,7 @@ const robotsContent =
   "index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1";
 const ogImageUrl = ogImage ?? "https://www.ui-skills.com/UI-OG.png";
 const twitterImageUrl = twitterImage ?? "https://www.ui-skills.com/UI-OG-X.png";
-const ogImageAltText =
-  ogImageAlt ?? "UI Skills preview for design engineers";
+const ogImageAltText = ogImageAlt ?? "UI Skills preview for design engineers";
 const twitterImageAltText = twitterImageAlt ?? "UI Skills social preview image";
 const ogTypeValue = ogType ?? "website";
 const siteNameValue = siteName ?? "UI Skills";
@@ -75,17 +69,6 @@ const githubStars = await getGithubStars();
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
-    {
-      preloadFiraMono ? (
-        <link
-          rel="preload"
-          href={firaMono400Woff2}
-          as="font"
-          type="font/woff2"
-          crossorigin
-        />
-      ) : null
-    }
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
     <link rel="canonical" href={canonicalUrl.href} />
@@ -114,7 +97,6 @@ const githubStars = await getGithubStars();
         />
       ) : null
     }
-    <script is:inline defer src="https://assets.onedollarstats.com/stonks.js"></script>
   </head>
   <body>
     <a

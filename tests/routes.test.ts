@@ -2,6 +2,7 @@ import { describe, test } from "node:test";
 import assert from "node:assert/strict";
 import { GET as getRegistry } from "../src/pages/skills/registry.json.ts";
 import { GET as getSkillContent } from "../src/pages/skills/[...slug]/llms.txt.ts";
+import { renderSkillMarkdown } from "../src/lib/render-skill-markdown.ts";
 
 describe("route boundaries", () => {
   test("returns the registry manifest with machine-readable headers", async () => {
@@ -50,5 +51,16 @@ describe("route boundaries", () => {
     } finally {
       globalThis.fetch = originalFetch;
     }
+  });
+
+  test("removes unsafe Markdown content and resolves safe relative links", async () => {
+    const html = await renderSkillMarkdown(
+      '<script>alert("xss")</script>\n\n[docs](../docs) [unsafe](javascript:alert(1))\n\n![tracking](https://example.com/pixel.gif)',
+      "https://github.com/example/repo/blob/main/SKILL.md",
+    );
+
+    assert.doesNotMatch(html, /<script|javascript:|<img/);
+    assert.match(html, /https:\/\/github.com\/example\/repo\/blob\/docs/);
+    assert.match(html, /unsafe<\/p>/);
   });
 });

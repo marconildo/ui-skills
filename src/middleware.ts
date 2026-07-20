@@ -1,5 +1,14 @@
 import { defineMiddleware } from "astro:middleware";
 
+const securityHeaders = {
+  "Content-Security-Policy":
+    "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' https: data:; font-src 'self'; connect-src 'self' https://api.interfaceoffice.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self'; object-src 'none'",
+  "Permissions-Policy": "camera=(), geolocation=(), microphone=()",
+  "Referrer-Policy": "strict-origin-when-cross-origin",
+  "X-Content-Type-Options": "nosniff",
+  "X-Frame-Options": "DENY",
+};
+
 export const onRequest = defineMiddleware((context, next) => {
   const url = new URL(context.request.url);
 
@@ -10,8 +19,19 @@ export const onRequest = defineMiddleware((context, next) => {
         ? 301
         : 308;
 
-    return Response.redirect(url, status);
+    const response = Response.redirect(url, status);
+    Object.entries(securityHeaders).forEach(([key, value]) =>
+      response.headers.set(key, value),
+    );
+    return response;
   }
 
-  return next();
+  return next().then((response) => {
+    if (response) {
+      Object.entries(securityHeaders).forEach(([key, value]) =>
+        response.headers.set(key, value),
+      );
+    }
+    return response;
+  }) as Promise<Response>;
 });
