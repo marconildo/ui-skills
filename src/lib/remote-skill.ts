@@ -74,7 +74,12 @@ const readBoundedText = async (response: Response) => {
 };
 
 const readCachedContent = async (cache: CacheLike, key: Request) => {
-  const cached = await cache.match(key);
+  let cached: Response | undefined;
+  try {
+    cached = await cache.match(key);
+  } catch {
+    return undefined;
+  }
   if (!cached) return undefined;
 
   try {
@@ -117,15 +122,19 @@ export const getRemoteSkill = async (
 
     const content = await readBoundedText(response);
     if (cache) {
-      await cache.put(
-        cacheKey,
-        new Response(content, {
-          headers: {
-            "Cache-Control": `public, max-age=${CACHE_TTL_SECONDS}`,
-            "Content-Type": "text/plain; charset=utf-8",
-          },
-        }),
-      );
+      try {
+        await cache.put(
+          cacheKey,
+          new Response(content, {
+            headers: {
+              "Cache-Control": `public, max-age=${CACHE_TTL_SECONDS}`,
+              "Content-Type": "text/plain; charset=utf-8",
+            },
+          }),
+        );
+      } catch {
+        // Cache failures must not break skill content delivery.
+      }
     }
 
     return { content, stale: false };

@@ -28,7 +28,14 @@ export const getGithubStars = async (): Promise<GithubStars | null> => {
     globalThis as typeof globalThis & { caches?: CacheStorageLike }
   ).caches?.default;
   const cacheKey = new Request(CACHE_KEY);
-  const cached = cache ? await cache.match(cacheKey) : undefined;
+  let cached: Response | undefined;
+  if (cache) {
+    try {
+      cached = await cache.match(cacheKey);
+    } catch {
+      cached = undefined;
+    }
+  }
 
   if (cached) {
     const cachedData = (await cached
@@ -109,7 +116,11 @@ export const getGithubStars = async (): Promise<GithubStars | null> => {
   });
 
   if (cache) {
-    await cache.put(cacheKey, responseToCache.clone());
+    try {
+      await cache.put(cacheKey, responseToCache.clone());
+    } catch {
+      // Cache failures must not break page rendering.
+    }
   }
 
   return result;

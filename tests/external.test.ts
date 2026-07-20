@@ -64,6 +64,22 @@ describe("remote skill content", () => {
         error instanceof RemoteSkillError && error.status === 502,
     );
   });
+
+  test("continues when cache operations fail", async () => {
+    setCache({
+      match: async () => {
+        throw new Error("cache unavailable");
+      },
+      put: async () => {
+        throw new Error("cache unavailable");
+      },
+    });
+    globalThis.fetch = async () => new Response("fresh skill", { status: 200 });
+
+    const result = await getRemoteSkill("https://example.com/cache-error.md");
+
+    assert.deepEqual(result, { content: "fresh skill", stale: false });
+  });
 });
 
 describe("GitHub stars", () => {
@@ -88,5 +104,22 @@ describe("GitHub stars", () => {
       throw new Error("network unavailable");
     };
     assert.equal(await getGithubStars(), null);
+  });
+
+  test("renders normally when the GitHub cache is unavailable", async () => {
+    setCache({
+      match: async () => {
+        throw new Error("cache unavailable");
+      },
+      put: async () => {
+        throw new Error("cache unavailable");
+      },
+    });
+    globalThis.fetch = async () =>
+      new Response(JSON.stringify({ stargazers_count: 5392 }), { status: 200 });
+
+    const result = await getGithubStars();
+
+    assert.deepEqual(result, { stars: 5392, label: "5.4k+" });
   });
 });
