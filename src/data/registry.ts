@@ -89,6 +89,19 @@ const registrySource: RegistrySourceSkill[] = [
       "Create or update a DESIGN.md from an existing product repository or public website, with evidence-based design tokens and guidance.",
   },
   {
+    slug: "i-have-adhd",
+    user: "ayghri",
+    repo: "i-have-adhd",
+    rawUrl:
+      "https://raw.githubusercontent.com/ayghri/i-have-adhd/main/skills/i-have-adhd/SKILL.md",
+    githubUrl:
+      "https://github.com/ayghri/i-have-adhd/blob/main/skills/i-have-adhd/SKILL.md",
+    name: "i-have-adhd",
+    topics: ["tooling"],
+    description:
+      "Shape output for a reader with ADHD by leading with the next action, numbering steps, suppressing tangents, and making progress visible.",
+  },
+  {
     slug: "design-first-ui-prompting",
     user: "MengTo",
     repo: "Skills",
