@@ -2417,6 +2417,19 @@ const registrySource: RegistrySourceSkill[] = [
     description:
       "Local-first architecture guidance for instant-feeling web apps, optimistic updates, bundle loading, offline behavior, and responsive UI motion.",
   },
+  {
+    slug: "gc-minimal-zine-poster-v0-1",
+    user: "LiamGvchi",
+    repo: "gc-minimal-zine-poster",
+    rawUrl:
+      "https://raw.githubusercontent.com/LiamGvchi/gc-minimal-zine-poster/main/SKILL.md",
+    githubUrl:
+      "https://github.com/LiamGvchi/gc-minimal-zine-poster/blob/main/SKILL.md",
+    name: "gc-minimal-zine-poster-v0-1",
+    topics: ["visual", "typography", "color"],
+    description:
+      "Generate quiet minimal zine-style editorial poster prompts and matching raster images from themes, moods, objects, photos, or content briefs.",
+  },
 ];
 
 const buildInitialPathSlug = (entry: RegistrySourceSkill) => {
